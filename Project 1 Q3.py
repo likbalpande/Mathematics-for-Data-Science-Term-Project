@@ -20,6 +20,7 @@ objective = cpy.Minimize(cpy.norm(s,1)); # objective function definition
 constraint = [(y-C@s)==0] #this is similar as above constraint
 prob=cpy.Problem(objective,constraint) #Posed the problem
 
+#Using OSQP solver
 result = prob.solve(solver=cpy.OSQP,verbose=True) 
 # result i:e an optimal solution (column vector will be ovtained) verbose=True helped track the steps while the prob.solve was running
 
