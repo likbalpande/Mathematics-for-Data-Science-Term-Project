@@ -16,10 +16,11 @@ s= cpy.Variable((C.shape[1],1))
 
 #Using CVXPY library for solving convex optimzation problem
 objective = cpy.Minimize(cpy.norm(s,1)); # objective function definition
-constraint = [y-C@s==0] #constraints were defined
+#constraint = [(y-C@s)**2==0] #given constraint
+constraint = [(y-C@s)==0] #this is similar as above constraint
 prob=cpy.Problem(objective,constraint) #Posed the problem
 
-result = prob.solve(verbose=True) 
+result = prob.solve(solver=cpy.OSQP,verbose=True) 
 # result i:e an optimal solution (column vector will be ovtained) verbose=True helped track the steps while the prob.solve was running
 
 #Solving the linear algebra equation to obtain x.
